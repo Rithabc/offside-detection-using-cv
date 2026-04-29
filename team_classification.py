@@ -76,3 +76,18 @@ def reclassify_poses_with_dbscan(img, poses):
             new_poses['GK'].append(player_dict)
             
     return new_poses
+
+def get_team_dominant_color(img, poses, team_name):
+    """Get the average dominant color (BGR) of all players in a team."""
+    if team_name not in poses or not poses[team_name]:
+        return None
+    colors = []
+    for player in poses[team_name]:
+        pts = player.get('geometry', [])
+        if pts:
+            color = get_dominant_color(img, pts)
+            if color is not None:
+                colors.append(color)
+    if not colors:
+        return None
+    return np.mean(colors, axis=0)

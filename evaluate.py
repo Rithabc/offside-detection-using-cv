@@ -37,7 +37,7 @@ def run_evaluation():
 
     results = []
 
-    for item in data[:50]:
+    for item in data:
         img_id = item['Image_ID']
         img_path = os.path.join(images_dir, img_id)
         img = cv2.imread(img_path)
@@ -45,7 +45,7 @@ def run_evaluation():
             continue
 
         poses = get_image_poses(data, img_id)
-        if not poses:
+        if not poses or not isinstance(poses, dict):
             continue
 
         # Dynamically determine goal direction based on GK

@@ -44,7 +44,7 @@ def get_offside_decision(pose_estimations, attackingTeamId, defendingTeamId, isK
 
     return pose_estimations, last_defending_man
 
-def detect_offside_players(pose_estimations):
+def detect_offside_players(pose_estimations, attackingTeamId=0, defendingTeamId=1):
     """
     Evaluates all pose_estimations and identifies:
       1) The last defending man
@@ -53,12 +53,8 @@ def detect_offside_players(pose_estimations):
     pose_estimations format: [p_id, teamId, pts, leftmost, angle]
     returns: updated pose_estimations with decision appended, and the p_id of the last defending man
     
-    The dataset consistently annotates Team1 (id=0) as the attacking team
-    and Team2 (id=1) as the defending team.
+    attackingTeamId and defendingTeamId are determined dynamically based on user input.
     """
-    attackingTeamId = 0
-    defendingTeamId = 1
-    
     isKeeperFound = any(p[1] == 2 for p in pose_estimations)
     
     pose_estimations, last_defending_man = get_offside_decision(
@@ -69,3 +65,4 @@ def detect_offside_players(pose_estimations):
     )
     
     return pose_estimations, last_defending_man
+
