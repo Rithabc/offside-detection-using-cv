@@ -163,7 +163,7 @@ def main():
 
     out_path = os.path.join(output_dir, img_id)
     cv2.imwrite(out_path, img)
-    print(f"  ✓ Saved to {out_path}\n")
+    print(f"Output image saved to {out_path}\n")
 
 if __name__ == '__main__':
     main()

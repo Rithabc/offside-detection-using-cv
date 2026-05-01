@@ -52,13 +52,13 @@ def main():
                     player_id += 1
 
         # We assume Team1 is attacking (0), Team2 is defending (1). The repository uses 0 for attacking and 1 for defending. 
-        # But we might need to test both or just stick to 0 attacking.
+        
         isKeeperFound = any(p[1] == 2 for p in pose_estimations)
         
         pose_estimations, last_defending_man = get_offside_decision(pose_estimations, vp, 0, 1, isKeeperFound)
         
         # Draw everything
-        cv2.circle(img, (int(vp[0]), int(vp[1])), 10, (0, 255, 0), -1) # Green for VP as requested? "vanishing point(green)"
+        cv2.circle(img, (int(vp[0]), int(vp[1])), 10, (0, 255, 0), -1) #"vanishing point(green)"
         
         for pose in pose_estimations:
             p_id, teamId, pts, leftmost, angle, decision = pose

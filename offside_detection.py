@@ -8,7 +8,7 @@ def get_offside_decision(pose_estimations, attackingTeamId, defendingTeamId, isK
     last_defending_man = -1
     
     for pose in pose_estimations:
-        if pose[1] in [defendingTeamId, 2]: # 2 is GK
+        if pose[1] in [defendingTeamId, 2]: # 2 is keeper
             # The angle is the last element (pose[-1])
             if pose[-1] < currMinAngle:
                 currMinAngle = pose[-1]
